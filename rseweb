@@ -305,7 +305,7 @@ function guiupgrade() {
     echo "Download installation ..."
     git clone --branch main https://github.com/tslenter/RSEWEB $RSTMP/RSEWEB
     echo "Check if download is successfull ..."
-    if [ -d "$RSTMP/RSECORE" ]; then
+    if [ -d "$RSTMP/RSEWEB" ]; then
          echo "Continue installation ..."
     else
          echo "Clone not successfull ..."
