@@ -160,7 +160,6 @@ function rseinstall() {
 #Copy RSE files
     echo "Copy files ..."
     cp -rf $RSDEST/web/* $APACHCONF
-    cp -rf $RSDEST/rseweb $RSDEST/rsbid
     check_file_reverse $APACHCONF/index.html
     check_file $APACHCONF/index.php
     check_file $APACHCONF/logo.png
@@ -179,7 +178,6 @@ function rseinstall() {
     check_file $APACHCONF/rse/rs_init.php
     check_file $APACHCONF/rse/rse.php
     check_file $APACHCONF/rse/rseview.php
-    check_file $RSDEST/rsbid
 #Load apache2 configuration and create SSL with authentication
     echo "Load apache2 configuration with SSL ..."
 #Activate SSL
@@ -281,7 +279,6 @@ function guiupgrade() {
          exit
     fi
     cp -rf $RSTMP/RSEWEB/* $RSDEST
-    cp -rf $RSTMP/RSEWEB/rseweb $RSDEST/rsbid
     rm -rf $RSTMP/RSEWEB
 #Check packages
     if [ -e "$APACHCONF/rse/index.php" ]; then
@@ -307,7 +304,6 @@ function guiupgrade() {
 #Update Webpage
         echo "Update webpage code ..."
 	cp -rf $RSDEST/web/* $APACHCONF
-        cp -rf $RSDEST/rseweb $RSDEST/rsbid
 	check_file_reverse $APACHCONF/index.html
 	check_file $APACHCONF/index.php
 	check_file $APACHCONF/logo.png
@@ -326,7 +322,6 @@ function guiupgrade() {
 	check_file $APACHCONF/rse/rs_init.php
 	check_file $APACHCONF/rse/rse.php
 	check_file $APACHCONF/rse/rseview.php
-        check_file $RSDEST/rsbid
         echo "Done ..."
         echo "Restarting Apache ..."
         service apache2 restart
