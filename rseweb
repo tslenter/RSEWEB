@@ -282,6 +282,9 @@ function rseremove() {
     rm /etc/apache2/ports.conf
     touch /etc/apache2/ports.conf
     check_file /etc/apache2/ports.conf
+#Remove old installation files
+    echo "Remove old installation files .."
+    rm -rf $RSDEST
     echo "Reload services ..."
     service apache2 restart
     echo "Done ..."
