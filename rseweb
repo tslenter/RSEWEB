@@ -29,7 +29,7 @@ APACHCONF=/var/www/html
 APACONFIG=/etc/apache2/sites-available
 RSBIN=/usr/bin
 APACHPHP=/etc/php/7.[0-9]/apache2
-bid=00000005
+bid=00000004
 
 #Banner
 function banner() {
@@ -248,6 +248,10 @@ function rseinstall() {
     a2ensite rse-apache
     echo "Disable default config ..."
     a2dissite 000-default
+#Activate port 80 and 443
+    echo "Added new port.conf to activate 443 and 80 ..."
+    cp -rf $RSDEST/config/ports.conf /etc/apache2/ports.conf
+    check_file /etc/apache2/ports.conf
 #Load apache modules
     echo "Load modules ..."
     a2enmod rewrite
@@ -273,6 +277,11 @@ function rseremove() {
     echo "Remove PHP authentication modules ..."
     chmod o-r /etc/shadow
     rm -rf $APACHPHP/conf.d/20-pam.ini
+#Deactivate port 80
+    echo "Disable ports 80 and 443 ..."
+    rm /etc/apache2/ports.conf
+    touch /etc/apache2/ports.conf
+    check_file /etc/apache2/ports.conf
     echo "Reload services ..."
     service apache2 restart
     echo "Done ..."
@@ -352,6 +361,9 @@ function guiupgrade() {
         echo "Activate website ..."
         cp -rf $RSDEST/config/rse-apache.conf $APACONFIG/rse-apache.conf
         check_file $APACONFIG/rse-apache.conf
+        echo "Activate ports file ..."
+        cp -rf $RSDEST/config/ports.conf /etc/apache2/ports.conf
+        check_file /etc/apache2/ports.conf
         echo "Restart sevices ..."
         service apache2 restart
         echo "Upgrade GUI done ..."
