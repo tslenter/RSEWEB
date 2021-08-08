@@ -65,7 +65,7 @@ global $dash;
     overflow-y:hidden;
     padding-bottom: 20px;
     font-family: monospace;
-    font-size: big;
+    font-size: small;
     white-space: nowrap;
     background: #212729;
     min-height: 1000px;
