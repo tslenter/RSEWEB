@@ -424,7 +424,6 @@ do
         "Upgrade RSE WEB")
             clear
             banner
-            version
             pre_install
             guiupgrade
             quit
