@@ -23,13 +23,13 @@
 #Variables
 RSPATH=$(pwd)
 RSDEST=/opt/RSEWEB
-RSCORE=/opt/RSECORE
+RSECORE=/opt/RSECORE
 SYSLOGCONF=/etc/syslog-ng/conf.d
 APACHCONF=/var/www/html
 APACONFIG=/etc/apache2/sites-available
 RSBIN=/usr/bin
 APACHPHP=/etc/php/7.[0-9]/apache2
-bid=00000004
+bid=00000005
 
 #Banner
 function banner() {
@@ -147,7 +147,7 @@ function rseinstall() {
     check_package "php-pear"
     check_package "php-dev"
     check_package "build-essential"
-	check_package "php-curl"
+    check_package "php-curl"
 #Checks for php-pam build
     echo "Check packages ..."
     check_package "apache2"
@@ -272,7 +272,7 @@ function rseremove() {
     rm -rf $APACONFIG/*
 #Check core install
     echo "Removing installation RSE ..."
-    if [ -e "$RSCORE/rsecore" ]; then
+    if [ -e "$RSECORE/rsecore" ]; then
         echo "Core still installed ..."
         apt -y purge apache2 apache2-utils php libapache2-mod-php libapache2-mod-authnz-external php apache2 libapache2-mod-authz-unixgroup php-cli libpam0g-dev php-pear php-dev libapache2-mod-php build-essential php-curl git
         apt -y install syslog-ng
@@ -298,6 +298,23 @@ function rseremove() {
 
 #Upgrade function
 function guiupgrade() {
+    echo "Check if Remote Syslog Core and web is installed ..."
+    check_file $RSECORE/rsecore
+    check_file $RSDEST/rseweb
+    echo "Starting upgrade ..."
+    echo "Download installation ..."
+    git clone --branch main https://github.com/tslenter/RSEWEB $RSTMP/RSEWEB
+    echo "Check if download is successfull ..."
+    if [ -d "$RSTMP/RSECORE" ]; then
+         echo "Continue installation ..."
+    else
+         echo "Clone not successfull ..."
+         exit
+    fi
+    cp -rf $RSTMP/RSEWEB/* $RSDEST
+    cp -rf $RSTMP/RSEWEB/rseweb $RSDEST/rsbid
+    rm -rf $RSTMP/RSEWEB
+    version
 #Check packages
     if [ -e "$APACHCONF/rse/index.php" ]; then
         check_file $APACHCONF/rse/index.php
@@ -347,6 +364,14 @@ function guiupgrade() {
         service apache2 restart
         echo "Restarting Syslog-NG ..."
         service syslog-ng restart
+        echo "Write php config ..."
+        cp -rf $RSDEST/config/20-pam.ini $APACHPHP/conf.d/
+        check_file $APACHPHP/conf.d/20-pam.ini
+        echo "Activate website ..."
+        cp -rf $RSDEST/config/rse-apache.conf $APACONFIG/rse-apache.conf
+        check_file $APACONFIG/rse-apache.conf
+        echo "Restart sevices ..."
+        service apache2 restart
         echo "Upgrade GUI done ..."
     else
         echo "No RSE webinterface found, nothing to do ..."
@@ -361,7 +386,7 @@ function pre_install() {
 	check_package "git"
 	check_package "elasticsearch"
 	check_file "$RSBIN/rseview"
-	check_file "$RSCORE/rsecore"
+	check_file "$RSECORE/rsecore"
 }
 
 #Thank you message
