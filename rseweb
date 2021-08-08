@@ -267,32 +267,14 @@ function rseremove() {
 #Remove Apache files
     echo "Removing RSE website ..."
     rm -rf $APACHCONF/*
-#Remove apache configs
-    echo "Remove Apache configs ..."
-    rm -rf $APACONFIG/*
-#Check core install
-    echo "Removing installation RSE ..."
-    if [ -e "$RSECORE/rsecore" ]; then
-        echo "Core still installed ..."
-        apt -y purge apache2 apache2-utils php libapache2-mod-php libapache2-mod-authnz-external php apache2 libapache2-mod-authz-unixgroup php-cli libpam0g-dev php-pear php-dev libapache2-mod-php build-essential php-curl git
-        apt -y install syslog-ng
-        apt -y autoremove
-    else
-        echo "No core found ..."
-        apt -y purge apache2 apache2-utils php libapache2-mod-php libapache2-mod-authnz-external php apache2 libapache2-mod-authz-unixgroup php-cli libpam0g-dev php-pear php-dev libapache2-mod-php build-essential php-curl git
-        apt -y install rsyslog
-        apt -y autoremove
-    fi
 #Remove Apache config and cleanup mess
-    rm -rf $certpath/rs.key
-    rm -rf $certpath/rs.crt
     rm -rf $APACONFIG/rse-apache.conf
-    rm -rf $APACHPHP/conf.d/20-pam.ini
-    rm -rf $APACHCONF/*
 #Remove PHP Authentication
     echo "Remove PHP authentication modules ..."
     chmod o-r /etc/shadow
     rm -rf $APACHPHP/conf.d/20-pam.ini
+    echo "Reload services ..."
+    service apache2 restart
     echo "Done ..."
 }
 
