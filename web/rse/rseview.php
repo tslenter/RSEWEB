@@ -116,7 +116,7 @@ for ($output_num = $total_results - 1; ; $output_num -= 1){
 	$output_host = $results[$output_num]['_source']['HOST_FROM'];
 	$output_message = $results[$output_num]['_source']['MESSAGE'];
 	$output_msghdr = $results[$output_num]['_source']['LEGACY_MSGHDR'];
-	$final_output = ("  " . $output_date . " " . $output_host . " " . $output_msghdr . "" . $output_message);
+	$final_output = ("  " . $output_date . " || " . $output_host . " - " . $output_msghdr . "" . $output_message);
 	echo ($final_output);
 	echo "<br>";
 }
