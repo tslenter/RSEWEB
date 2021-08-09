@@ -315,9 +315,7 @@ if (qe != '') {
         </div>
     </div>
     <br></br>
-    <div class="contents">
-        <div id="responsecommand" class="out"></div>
-        </div>
+    <div id="responsecommand" class="out"></div>
     </div>
     <div align="center">
         <br></br>
