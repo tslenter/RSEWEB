@@ -36,8 +36,8 @@ require_once 'rs_init.php';
 if(isset($_GET['q'])) {
         $q = $_GET['q'];
 	$b = $_GET['b'];
-	if ($b > 10000) {
-        	$b = 10000;
+	if ($b > 3500) {
+        	$b = 3500;
 	}
         $query = $es->search([
 		'size'=> $b,
@@ -64,8 +64,8 @@ if(isset($_GET['q'])) {
 
 if(isset($_GET['a'])) {
         $b = $_GET['b'];
-        if ($b > 10000) {
-                $b = 10000;
+        if ($b > 3500) {
+                $b = 3500;
         }
         $query = $es->search([
                 'size'=> $b,
