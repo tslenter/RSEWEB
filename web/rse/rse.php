@@ -221,8 +221,8 @@ if (bu == '') {
     var bu = '300';
 }
 
-if (bu >= 10000) {
-    var bu = '10000';
+if (bu >= 3500) {
+    var bu = '3500';
 }
 
 //scrolling data
@@ -235,7 +235,7 @@ if (qe != '') {
         if (scroll) {
             scrollToBottom();
         }
-        }, 1000);
+        }, 3000);
     $.ajaxSetup({ cache: false });
     });
 } else if (dash != '') {
@@ -255,7 +255,7 @@ if (qe != '') {
         if (scroll) {
             scrollToBottom();
         }
-        }, 1000);
+        }, 3000);
     $.ajaxSetup({ cache: false });
     });
 }
