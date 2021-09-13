@@ -172,6 +172,9 @@ a:hover {
      }
      if (isset($_GET['bu'])) {
          $bu = $_GET["bu"];
+         if ($bu >= 3500) {
+             $bu = 3500;
+         }
      }
      if (isset($_GET['dash'])) {
          $dash = $_GET["dash"];
