@@ -44,6 +44,7 @@ global $url;
 global $qe;
 global $bu;
 global $dash;
+global $stop;
 
 ?>
 
@@ -161,6 +162,14 @@ a:hover {
   text-decoration: underline;
 }
 
+a.hb:link {color: grey;}
+a.hb:visited {color: grey;}
+a.hb:hover {color: #2e2e2e; text-decoration: none;}
+
+.hb {
+   margin-top: 5px;
+}
+
 </style>
 
 <script src="jquery-latest.js"></script>
@@ -179,6 +188,9 @@ a:hover {
      if (isset($_GET['dash'])) {
          $dash = $_GET["dash"];
      }
+     if (isset($_GET['stop'])) {
+         $stop = $_GET["stop"];
+     }
 ?>
 
 <script>
@@ -186,6 +198,7 @@ a:hover {
     var qe = '<?php echo $qe; ?>';
     var bu = '<?php echo $bu; ?>';
     var dash = '<?php echo $dash; ?>';
+    var stop = '<?php echo $stop; ?>';
 </script>
 
 <script>
@@ -230,18 +243,31 @@ if (bu >= 3500) {
 
 //scrolling data
 if (qe != '') {
-    $(document).ready(function() {
-        $("#responsecommand").load("rseview.php?q="+qe+"&b="+bu);
-        var refreshId = setInterval(function() {
-        $("#responsecommand").load('rseview.php?q='+qe+'&b='+bu+'&randval='+ Math.random());
-        ScrollNeeded();
-        if (scroll) {
-            scrollToBottom();
-        }
-        }, 3000);
-    $.ajaxSetup({ cache: false });
-    });
-} else if (dash != '') {
+    if (stop == 'y') {
+        $(document).ready(function() {
+            $("#responsecommand").load("rseview.php?q="+qe+"&b="+bu);
+            var refreshId = setInterval(function() {
+            ScrollNeeded();
+            if (scroll) {
+                scrollToBottom();
+            }
+            }, 3000);
+        $.ajaxSetup({ cache: false });
+        });
+    } else if (stop == '') {
+        $(document).ready(function() {
+            $("#responsecommand").load("rseview.php?q="+qe+"&b="+bu);
+            var refreshId = setInterval(function() {
+            $("#responsecommand").load('rseview.php?q='+qe+'&b='+bu+'&randval='+ Math.random());
+            ScrollNeeded();
+            if (scroll) {
+                scrollToBottom();
+            }
+            }, 3000);
+        $.ajaxSetup({ cache: false });
+        });
+    }
+} else if (dash == 'x') {
     $(document).ready(function() {
         $("#responsecommand").load("dash.php?dash="+dash);
         var refreshId = setInterval(function() {
@@ -250,17 +276,30 @@ if (qe != '') {
     $.ajaxSetup({ cache: false });
     });
 } else if (qe == 0) {
-    $(document).ready(function() {
-        $("#responsecommand").load("rseview.php?a=noquery"+"&b="+bu);
-        var refreshId = setInterval(function() {
-        $("#responsecommand").load("rseview.php?a=noquery"+"&b="+bu+"&randval="+ Math.random());
-        ScrollNeeded();
-        if (scroll) {
-            scrollToBottom();
-        }
-        }, 3000);
-    $.ajaxSetup({ cache: false });
-    });
+    if (stop == 'y') {
+        $(document).ready(function() {
+            $("#responsecommand").load("rseview.php?a=noquery"+"&b="+bu);
+            var refreshId = setInterval(function() {
+            ScrollNeeded();
+            if (scroll) {
+                scrollToBottom();
+            }
+            }, 3000);
+        $.ajaxSetup({ cache: false });
+        });
+    } else if (stop == '') {
+        $(document).ready(function() {
+            $("#responsecommand").load("rseview.php?a=noquery"+"&b="+bu);
+            var refreshId = setInterval(function() {
+            $("#responsecommand").load("rseview.php?a=noquery"+"&b="+bu+"&randval="+ Math.random());
+            ScrollNeeded();
+            if (scroll) {
+                scrollToBottom();
+            }
+            }, 3000);
+        $.ajaxSetup({ cache: false });
+        });
+    }
 }
 </script>
 
@@ -290,6 +329,7 @@ if (qe != '') {
                        <label><input type="text" placeholder="Search.." name="qe" id='txtquery' onkeyup='saveValue(this);'></label>
                        <label><input type="buffer" placeholder="Buffer.." name="bu" id='txtbuffer' onkeyup='saveValue(this);'></label>
                        <button class="submit" type="submit"><i class="fas fa-search"></i>
+                       <button class="submit" name="stop" value="y" type="submit"><i class="fas fa-stop"></i>
                        <script type="text/javascript">
                            document.getElementById("txtquery").value = getSavedValue("txtquery"); // set the value to this input
                            document.getElementById("txtbuffer").value = getSavedValue("txtbuffer");  // set the value to this input
@@ -309,7 +349,13 @@ if (qe != '') {
                                }
                            return localStorage.getItem(v);
                            }
-                    </script>
+                      </script>
+                    </form>
+                    </li>
+                    <li>
+                    <form class="form">
+                    &nbsp;
+                    <a class="hb fas fa-redo" href="?qe=&bu="></a>
                     </form>
                     </li>
                 </ul>
@@ -322,7 +368,7 @@ if (qe != '') {
     </div>
     <div align="center">
         <br></br>
-        <?php echo "<font color=\"silver\">Remote Syslog Elasticsearch v0.1 - <a href='https://github.com/tslenter/RSX-RSC/blob/master/README.md' target='_blank'>Donate and help</a></font><br>"; ?>
+        <?php echo "<font color=\"silver\">Remote Syslog Elasticsearch v0.1 - <a href='https://github.com/tslenter/RS/blob/main/README.md' target='_blank'>Donate and help</a></font><br>"; ?>
         <br></br>
     </div>
     <script src="bootstrap.min.js"></script>

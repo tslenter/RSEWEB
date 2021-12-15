@@ -109,7 +109,7 @@ EOT;
 echo "Remote Syslog Elasticsearch 0.1 - T.Slenter - https://www.remotesyslog.com/";
 echo "<br />\n";
 echo "<br />\n";
-echo "<a href='https://github.com/tslenter/RSX-RSC/blob/master/README.md' target='_blank'>Donate and help</a>";
+echo "<a href='https://github.com/tslenter/RS/blob/main/README.md' target='_blank'>Donate and help</a>";
 ?>
 </center>
 </body>
