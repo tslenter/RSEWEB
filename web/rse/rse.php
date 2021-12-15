@@ -170,6 +170,56 @@ a.hb:hover {color: #2e2e2e; text-decoration: none;}
    margin-top: 5px;
 }
 
+/* Center the loader */
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  margin: -76px 0 0 -76px;
+  border: 16px solid lightgrey;
+  border-radius: 50%;
+  border-top: 16px solid green;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 }
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}
+
+#extra_loader_div {
+  display: none;
+  text-align: left;
+}
+
 </style>
 
 <script src="jquery-latest.js"></script>
@@ -304,7 +354,7 @@ if (qe != '') {
 </script>
 
 </head>
-<body style="background-color:#212729;">
+<body style="background-color:#212729;" onload="myLoader()" style="margin:0;">
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
@@ -364,6 +414,8 @@ if (qe != '') {
         </div>
     </div>
     <br></br>
+    <div id="loader"></div>
+    <div style="display:none;" id="extra_loader_div" class="animate-bottom"></div>
     <div id="responsecommand" class="out"></div>
     </div>
     <div align="center">
@@ -372,5 +424,17 @@ if (qe != '') {
         <br></br>
     </div>
     <script src="bootstrap.min.js"></script>
+    <script>
+    var extra_loader_div;
+
+    function myLoader() {
+        extra_loader_div = setTimeout(showPage, 3000);
+    }
+
+    function showPage() {
+       document.getElementById("loader").style.display = "none";
+       document.getElementById("extra_loader_div").style.display = "block";
+    }
+    </script>
 </body>
 </html>
