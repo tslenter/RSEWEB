@@ -440,14 +440,14 @@ if (qe != '') {
     function downloadInnerHtml(filename, elId, mimeType) {
        var elHtml = document.getElementById(elId).innerHTML;
        var link = document.createElement('a');
-       mimeType = mimeType || 'application/pdf';
+       mimeType = mimeType || 'text/html';
 
        link.setAttribute('download', filename);
        link.setAttribute('href', 'data:' + mimeType  +  ';charset=utf-8,' + encodeURIComponent(elHtml));
        link.click();
     }
 
-    var fileName =  'export.pdf';
+    var fileName =  'export.html';
 
     $('#downloadLink').click(function(){
     downloadInnerHtml(fileName, 'responsecommand','text/html');
