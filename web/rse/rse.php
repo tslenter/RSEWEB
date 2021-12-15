@@ -406,6 +406,8 @@ if (qe != '') {
                     <form class="form">
                     &nbsp;
                     <a class="hb fas fa-redo" href="?qe=&bu="></a>
+                    &nbsp;
+                    <a class="hb fas fa-download" href="#" id="downloadLink"></a>
                     </form>
                     </li>
                 </ul>
@@ -428,13 +430,28 @@ if (qe != '') {
     var extra_loader_div;
 
     function myLoader() {
-        extra_loader_div = setTimeout(showPage, 3000);
+        extra_loader_div = setTimeout(showPage, 4000);
     }
 
     function showPage() {
        document.getElementById("loader").style.display = "none";
        document.getElementById("extra_loader_div").style.display = "block";
     }
+    function downloadInnerHtml(filename, elId, mimeType) {
+       var elHtml = document.getElementById(elId).innerHTML;
+       var link = document.createElement('a');
+       mimeType = mimeType || 'text/html';
+
+       link.setAttribute('download', filename);
+       link.setAttribute('href', 'data:' + mimeType  +  ';charset=utf-8,' + encodeURIComponent(elHtml));
+       link.click();
+    }
+
+    var fileName =  'export.html';
+
+    $('#downloadLink').click(function(){
+    downloadInnerHtml(fileName, 'responsecommand','text/html');
+    });
     </script>
 </body>
 </html>
