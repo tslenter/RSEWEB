@@ -104,6 +104,8 @@ input[type=text] {
     padding-bottom: 0px;
     box-sizing: border-box;
     margin: auto;
+    transition: width 0.4s ease-in-out;
+    background-image: linear-gradient(to right, lightgrey, lightgreen);
 }
 
 input[type=buffer] {
@@ -112,6 +114,8 @@ input[type=buffer] {
     padding-bottom: 0px;
     box-sizing: border-box;
     margin: auto;
+    transition: width 0.4s ease-in-out;
+    background-image: linear-gradient(to right, lightgrey, lightgreen);
 }
 
 .form
@@ -376,8 +380,8 @@ if (qe != '') {
                     <form onclick=="return false" methode="get" class="form" autocomplete="off">
                        <! –– create some space between the menu and the searchbar ––>
                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                       <label><input type="text" placeholder="Search.." name="qe" id='txtquery' onkeyup='saveValue(this);'></label>
-                       <label><input type="buffer" placeholder="Buffer.." name="bu" id='txtbuffer' onkeyup='saveValue(this);'></label>
+                       <label><input type="text" placeholder="Search.." name="qe" id='txtquery' onkeyup='saveValue(this);' pattern="[A-Za-z0-9_.-;:=]{0,30}"></label>
+                       <label><input type="buffer" placeholder="Buffer.." name="bu" id='txtbuffer' onkeyup='saveValue(this);' pattern='[0-9]{0,4}'></label>
                        <button class="submit" type="submit"><i class="fas fa-search"></i>
                        <button class="submit" name="stop" value="y" type="submit"><i class="fas fa-stop"></i>
                        <script type="text/javascript">
