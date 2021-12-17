@@ -92,11 +92,11 @@ $form = <<<EOT
         <label for="username">
         <i class="fas fa-user"></i>
         </label>
-        \t<input name="user" type="text" placeholder="Username" required/>
+        \t<input name="user" type="text" placeholder="Username" required pattern="[A-Za-z0-9@_-.]{0,30}"/>
         <label for="password">
         <i class="fas fa-lock"></i>
         </label>
-        \t<input name="pwd"  type="password" placeholder="Password" required/>
+        \t<input name="pwd"  type="password" placeholder="Password" required pattern="[A-Za-z0-9_.-=!@#$%^*()+?]{0,100}"/>
         \t<input type="submit" value="Login"/>
 </form>
 EOT;
