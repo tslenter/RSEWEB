@@ -95,7 +95,7 @@ if($query['hits']['total']['value'] >=1) {
 
 if (empty($total_results)) {
         echo "<br>";
-        echo ('No results ...');
+        echo htmlspecialchars('No results ...', ENT_QUOTES, 'UTF-8');
         echo "<br>";
         die();
 }
@@ -117,7 +117,7 @@ for ($output_num = $total_results - 1; ; $output_num -= 1){
 	$output_message = $results[$output_num]['_source']['MESSAGE'];
 	$output_msghdr = $results[$output_num]['_source']['LEGACY_MSGHDR'];
 	$final_output = ("  " . $output_date . " || " . $output_host . " - " . $output_msghdr . "" . $output_message);
-	echo ($final_output);
+	echo htmlspecialchars($final_output, ENT_QUOTES, 'UTF-8');
 	echo "<br>";
 }
 die();
