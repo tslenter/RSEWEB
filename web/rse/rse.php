@@ -297,6 +297,7 @@ if (bu >= 3500) {
 
 //scrolling data
 if (qe != '') {
+    qe = encodeURIComponent(qe);
     if (stop == 'y') {
         $(document).ready(function() {
             $("#responsecommand").load("rseview.php?q="+qe+"&b="+bu);
@@ -380,7 +381,7 @@ if (qe != '') {
                     <form onclick=="return false" methode="get" class="form" autocomplete="off">
                        <! –– create some space between the menu and the searchbar ––>
                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                       <label><input type="text" placeholder="Search.." name="qe" id='txtquery' onkeyup='saveValue(this);' pattern="[A-Za-z0-9_.-;:= ]{0,30}"></label>
+                       <label><input type="text" placeholder="Search.." name="qe" id='txtquery' onkeyup='saveValue(this);' pattern="[A-Za-z0-9_'().-;:= ]{0,30}"></label>
                        <label><input type="buffer" placeholder="Buffer.." name="bu" id='txtbuffer' onkeyup='saveValue(this);' pattern='[0-9]{0,4}'></label>
                        <button class="submit" type="submit"><i class="fas fa-search"></i>
                        <button class="submit" name="stop" value="y" type="submit"><i class="fas fa-stop"></i>
