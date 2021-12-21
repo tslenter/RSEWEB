@@ -429,14 +429,14 @@ var myChart = new Chart(ctx, {
               <td><?php echo("Task waiting in queue:   "); ?></td>
               <td><?php echo($cluster_json['task_max_waiting_in_queue_millis']); ?></td>
           </tr>
-          <tr>
-              <td><?php echo("Lifecycle max index size:   "); ?></td>
-              <td><?php echo($lifecycle_ss); ?></td>
+          <!-- <tr>
+              <td><// ?php echo("Lifecycle max index size:   "); ?></td>
+              <td><// ?php echo($lifecycle_ss); ?></td>
          </tr>
          <tr>
-              <td><?php echo("Lifecycle max index lifetime:   "); ?></td>
-              <td><?php echo($lifecycle_day); ?></td>
-         </tr>
+              <td><// ?php echo("Lifecycle max index lifetime:   "); ?></td>
+              <td><// ?php echo($lifecycle_day); ?></td>
+         </tr> -->
       </tbody>
   </table>
   </div>
