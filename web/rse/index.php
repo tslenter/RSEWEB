@@ -74,7 +74,7 @@ if (isset($_POST['user']) && isset($_POST['pwd'])) {
         echo "\r\nUnigid is: ".$un;
         $_SESSION['id'] = true;
         $_SESSION['un'] = true;
-        header( "refresh:5;url=rse.php" );
+        header( "refresh:1;url=rse.php" );
     } else {
         /*#echo "<h4>Error: {$error}</h4>";*/
         echo "<h4>Login Failed ...</h4>";
