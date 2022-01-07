@@ -180,12 +180,12 @@ a.hb:hover {color: #2e2e2e; text-decoration: none;}
   left: 50%;
   top: 50%;
   z-index: 1;
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   margin: -76px 0 0 -76px;
-  border: 16px solid lightgrey;
+  border: 8px solid lightgrey;
   border-radius: 50%;
-  border-top: 16px solid grey;
+  border-top: 8px solid grey;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
