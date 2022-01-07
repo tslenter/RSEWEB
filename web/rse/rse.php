@@ -105,7 +105,7 @@ input[type=text] {
     box-sizing: border-box;
     margin: auto;
     transition: width 0.4s ease-in-out;
-    background-image: linear-gradient(to right, lightgrey, lightgreen);
+    background-image: linear-gradient(to right, white, lightgrey);
 }
 
 input[type=buffer] {
@@ -115,7 +115,7 @@ input[type=buffer] {
     box-sizing: border-box;
     margin: auto;
     transition: width 0.4s ease-in-out;
-    background-image: linear-gradient(to right, lightgrey, lightgreen);
+    background-image: linear-gradient(to right, white, lightgrey);
 }
 
 .form
@@ -185,7 +185,7 @@ a.hb:hover {color: #2e2e2e; text-decoration: none;}
   margin: -76px 0 0 -76px;
   border: 16px solid lightgrey;
   border-radius: 50%;
-  border-top: 16px solid green;
+  border-top: 16px solid grey;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }
