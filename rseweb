@@ -102,7 +102,7 @@ function check_file_gui() {
 function rseinstall() {
 #Check installation conflics ...
     echo "Check if RSX is installed ..."
-    check_file_gui $SYSLOGCONF/99RSX-rs.conf
+    check_file_gui $APACONFIG/rsx-apache.conf
     echo "Check if RSC is installed ..."
     check_file_reverse $APACHCONF/rsc/index.php
     echo "Check if RSE is installed ..."
@@ -236,7 +236,7 @@ function rseinstall() {
 function rseremove() {
 #Check removal steps ...
     echo "Check if RSX is installed ..."
-    check_file_gui $SYSLOGCONF/99RSX-rs.conf
+    check_file_gui $APACONFIG/rsx-apache.conf
     echo "Check if RSC is installed"
     check_file_gui $APACHCONF/rsc/index.php
     echo "Check if RSE is installed"
