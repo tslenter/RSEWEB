@@ -92,7 +92,7 @@ $form = <<<EOT
         <label for="username">
         <i class="fas fa-user"></i>
         </label>
-        \t<input name="user" type="text" placeholder="Username" pattern="[a-zA-Z0-9!@#$%^&*_=+-]{1,100}" title="Some special characters are disabled ..."/>
+        \t<input name="user" type="text" placeholder="Username" pattern="[a-zA-Z0-9!@#$%^&*_=+-]{1,100}" title="Some special characters are disabled ..." required/>
         <label for="password">
         <i class="fas fa-lock"></i>
         </label>
