@@ -373,7 +373,7 @@ if (qe != '') {
                         <ul class="dropdown-menu" role="menu">
                            <li><a href="?check1=tes <?php if (isset($_GET['check1'])) { if ($_GET['check1'] == "tes") { exec('logger -n 127.0.0.1 -d "This is a UDP test message!"; logger -T -P 514 -n 127.0.0.1 "This is a TCP test message!"'); } } $check1=""; ?>">Test message</a></li>
                            <li><a href="?check2=rml <?php if (isset($_GET['check2'])) { if ($_GET['check2'] == "rml") { exec('/usr/bin/rseview -c'); } } $check2=""; ?>">Clear live log archive</a></li>
-                           <li><a href="https://github.com/tslenter/RSX-RSC/blob/master/LICENSE" target="_blank">License</a></li>
+                           <li><a href="https://github.com/tslenter/RS/blob/main/LICENSE" target="_blank">License</a></li>
                         </ul>
                     </li>
                     <li><a href="logout.php">Logout</a></li>
