@@ -130,15 +130,17 @@ function rseinstall() {
     check_package "build-essential"
 #Load PHP authentication module
     echo "Activate PHP PAM ..."
-    echo "Compile ..."
-    currentpath=$(pwd)
-    cd $RSDEST/php-pam
-    phpize
-    ./configure --prefix=/usr
-    make
-    make install
-    cd $currentpath
-    ldconfig
+    #echo "Compile ..."
+    #currentpath=$(pwd)
+    #cd $RSDEST/php-pam
+    #phpize
+    #./configure --prefix=/usr
+    #make
+    #make install
+    #cd $currentpath
+    #ldconfig
+    pear install pecl/PAM
+    echo "extension=pam.so" >> /etc/php/[7-8].[0-9]/apache2/php.ini
 #Setup php login experimental
     echo "Write php config ..."
     cp -rf $RSDEST/config/20-pam.ini $APACHPHP/conf.d/
