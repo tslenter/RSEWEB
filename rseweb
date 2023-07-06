@@ -28,7 +28,7 @@ SYSLOGCONF=/etc/syslog-ng/conf.d
 APACHCONF=/var/www/html
 APACONFIG=/etc/apache2/sites-available
 RSBIN=/usr/bin
-APACHPHP=/etc/php/7.[0-9]/apache2
+APACHPHP=/etc/php/[7-8].[0-9]/apache2
 
 #Banner
 function banner() {
